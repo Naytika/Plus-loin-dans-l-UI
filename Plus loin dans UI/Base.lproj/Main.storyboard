@@ -29,7 +29,7 @@
         <!--Item 1-->
         <scene sceneID="dUJ-ZM-JBd">
             <objects>
-                <viewController id="taD-bi-stk" sceneMemberID="viewController">
+                <viewController id="taD-bi-stk" customClass="CycleetFrameController" customModule="Plus_loin_dans_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ooo-Im-8Bn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
