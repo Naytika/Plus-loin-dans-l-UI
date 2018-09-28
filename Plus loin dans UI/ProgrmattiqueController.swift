@@ -12,6 +12,8 @@ class ProgrmattiqueController: UIViewController {
 
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
+    var monPremierBouton: UIButton?
+    
     
     
     override func viewDidLoad() {
@@ -41,7 +43,23 @@ class ProgrmattiqueController: UIViewController {
         guard monPremierLabel != nil else {return}
             view.addSubview(monPremierLabel!)
         
- 
+ let rectDeMonBouton = CGRect(x: view.frame.width/2 - 75, y: monPremierLabel!.frame.maxY + 20, width: 150, height: 40)
+        
+        monPremierBouton = UIButton(frame: rectDeMonBouton)
+        monPremierBouton?.setTitle("Appuyer", for: UIControlState.normal)
+        monPremierBouton?.tintColor = UIColor.blue // couleur du texte
+        monPremierBouton?.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        monPremierBouton?.backgroundColor = UIColor.black
+        monPremierBouton?.layer.borderColor = UIColor.white.cgColor
+        monPremierBouton?.layer.borderWidth = 2
+       view.addSubview(monPremierBouton!)
+        
+        monPremierBouton?.addTarget(self , action: #selector(boutonApuye), for: .touchUpInside) // Action du bouton
+        
     }
 
+    @objc func boutonApuye() { // mettre une func sous obj c
+        
+        print("tu as bien appuyé sur le bouton")
+    }
 }
