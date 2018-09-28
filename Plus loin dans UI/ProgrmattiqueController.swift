@@ -13,6 +13,8 @@ class ProgrmattiqueController: UIViewController {
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
     var monPremierBouton: UIButton?
+    var mapremiereIV: UIImageView?
+    
     
     
     
@@ -53,12 +55,33 @@ class ProgrmattiqueController: UIViewController {
         monPremierBouton?.layer.borderColor = UIColor.white.cgColor
         monPremierBouton?.layer.borderWidth = 2
        view.addSubview(monPremierBouton!)
+      
         
-        monPremierBouton?.addTarget(self , action: #selector(boutonApuye), for: .touchUpInside) // Action du bouton
+        monPremierBouton?.addTarget(self, action: #selector(boutonAppuye), for: .touchUpInside) // Action du bouton
         
+        let largeur = view.frame.width - 60
+        
+        let rectIV = CGRect(x: 30, y: (view.frame.height / 2) - (largeur / 2), width: largeur, height: largeur)
+        mapremiereIV = UIImageView(frame: rectIV)
+        mapremiereIV?.image = #imageLiteral(resourceName: "codabee") // on peux aussi faire = UIImage(named: "codabee")
+        mapremiereIV?.contentMode = .scaleAspectFill
+        mapremiereIV?.clipsToBounds = true
+        mapremiereIV?.layer.cornerRadius = mapremiereIV!.frame.width / 2
+        
+        
+        view.addSubview(mapremiereIV!)
+        //view.sendSubview(toBack: mapremiereIV!)  //envoi de l'imageView en fond
+         view.bringSubview(toFront: monPremierBouton!)//mettre le bouton devant tout
+        mapremiereIV?.isUserInteractionEnabled = true // pour mettre une image cliquable
+        mapremiereIV?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageAppuye)))
     }
-
-    @objc func boutonApuye() { // mettre une func sous obj c
+    
+    @objc func imageAppuye() {
+    print("image touché")
+    }
+    
+    
+    @objc func boutonAppuye() { // mettre une func sous obj c
         
         print("tu as bien appuyé sur le bouton")
     }
