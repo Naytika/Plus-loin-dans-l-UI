@@ -11,6 +11,7 @@ import UIKit
 class ProgrmattiqueController: UIViewController {
 
     var monPremierUIView: UIView?
+    var monPremierLabel: UILabel?
     
     
     override func viewDidLoad() {
@@ -32,29 +33,15 @@ class ProgrmattiqueController: UIViewController {
         // guard monPremierUIView != nil esle { return }
         // view.addSubview(monPremierUIView!)    }
 
-        print(monPremierUIView?.frame)
-        print(monPremierUIView?.bounds)
+        monPremierLabel = UILabel(frame: CGRect(x: 0, y: monPremierUIView!.frame.maxY + 20, width: view.frame.width, height: 50))
+        monPremierLabel?.text = "Coucou je suis un texte"
+        monPremierLabel?.textColor = UIColor.white
+        monPremierLabel?.font = UIFont(name: "Chalkduster", size: 20)
+        monPremierLabel?.textAlignment = NSTextAlignment.center // alignement .left .right (...)
+        guard monPremierLabel != nil else {return}
+            view.addSubview(monPremierLabel!)
         
-        let secondeVue = UIView(frame: monPremierUIView!.frame)
-        secondeVue.center.y += 100 // le centre a 50 en plus pour qu'il soit plus bas
-        secondeVue.backgroundColor = UIColor(red: 10/255, green: 80/255, blue: 87/255, alpha: 1)
-        view.addSubview(secondeVue) // ajout de secondevue à l'ecran
-        
-        
-        let troisiemeVue = UIView(frame: monPremierUIView!.bounds)
-        troisiemeVue.center.y += 200
-        troisiemeVue.backgroundColor = UIColor.blue
-        view.addSubview(troisiemeVue)
-        troisiemeVue.layer.opacity = 0.5 // oppacité de troisiemevue
-        //OMBRE
-        troisiemeVue.layer.shadowColor = UIColor.darkGray.cgColor // ajout de la couleur de l'ombre
-        troisiemeVue.layer.shadowOffset = CGSize(width: 4, height: 4)
-
-        troisiemeVue.layer.shadowRadius = 4 // bord arrondi de l'ombre
-        troisiemeVue.layer.shadowOpacity = 0.5 // opacité de l'ombre
-      
-        
-     
+ 
     }
 
 }
