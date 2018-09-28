@@ -10,6 +10,7 @@ import UIKit
 
 class ProgrmattiqueController: UIViewController {
 
+    @IBOutlet weak var scroll: UIScrollView!
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
     var monPremierBouton: UIButton?
@@ -32,18 +33,18 @@ class ProgrmattiqueController: UIViewController {
         monPremierUIView?.layer.cornerRadius = 25
         
         // Ajout de monPremierUIView à la vue
-        view.addSubview(monPremierUIView!)
+        scroll.addSubview(monPremierUIView!)
     // Comme c'est un optionnel je le force avec ! et je eux aussi mettre
         // guard monPremierUIView != nil esle { return }
         // view.addSubview(monPremierUIView!)    }
 
-        monPremierLabel = UILabel(frame: CGRect(x: 0, y: monPremierUIView!.frame.maxY + 20, width: view.frame.width, height: 50))
+        monPremierLabel = UILabel(frame: CGRect(x: 0, y: monPremierUIView!.frame.maxY + 20, width: scroll.frame.width, height: 50))
         monPremierLabel?.text = "Coucou je suis un texte"
         monPremierLabel?.textColor = UIColor.white
         monPremierLabel?.font = UIFont(name: "Chalkduster", size: 20)
         monPremierLabel?.textAlignment = NSTextAlignment.center // alignement .left .right (...)
         guard monPremierLabel != nil else {return}
-            view.addSubview(monPremierLabel!)
+            scroll.addSubview(monPremierLabel!)
         
  let rectDeMonBouton = CGRect(x: view.frame.width/2 - 75, y: monPremierLabel!.frame.maxY + 20, width: 150, height: 40)
         
@@ -54,7 +55,7 @@ class ProgrmattiqueController: UIViewController {
         monPremierBouton?.backgroundColor = UIColor.black
         monPremierBouton?.layer.borderColor = UIColor.white.cgColor
         monPremierBouton?.layer.borderWidth = 2
-       view.addSubview(monPremierBouton!)
+       scroll.addSubview(monPremierBouton!)
       
         
         monPremierBouton?.addTarget(self, action: #selector(boutonAppuye), for: .touchUpInside) // Action du bouton
@@ -69,12 +70,33 @@ class ProgrmattiqueController: UIViewController {
         mapremiereIV?.layer.cornerRadius = mapremiereIV!.frame.width / 2
         
         
-        view.addSubview(mapremiereIV!)
+        scroll.addSubview(mapremiereIV!)
         //view.sendSubview(toBack: mapremiereIV!)  //envoi de l'imageView en fond
-         view.bringSubview(toFront: monPremierBouton!)//mettre le bouton devant tout
+         scroll.bringSubview(toFront: monPremierBouton!)//mettre le bouton devant tout
         mapremiereIV?.isUserInteractionEnabled = true // pour mettre une image cliquable
         mapremiereIV?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageAppuye)))
+        
+        
+        
+       let couleurs: [UIColor] = [.red, .blue, .white, .black]
+        var maximum: CGFloat = (mapremiereIV?.frame.maxY)!
+        
+        
+        for couleur in couleurs {
+            let vue = UIView(frame: CGRect(x: 0, y: maximum + 10, width: 100, height: 100))
+            vue.backgroundColor = couleur
+            scroll.addSubview(vue)
+            maximum = vue.frame.maxY
+            
+        }
+        scroll.contentSize = CGSize(width: view.frame.width * 2, height: maximum + 100)
+        
     }
+    
+    
+    
+    
+    
     
     @objc func imageAppuye() {
     print("image touché")
